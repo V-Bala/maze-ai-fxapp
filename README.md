@@ -2,7 +2,7 @@
 A JavaFX application that utilizes the A-Star search algorithm to compute the shortest path through a “maze”. A user has the ability to specify the dimensions of the maze (represented by a 2D NxM grid of nodes), and how many landmines to place in it. The user can also tune the behavior of the A-Star algorithm by specifying the distance heuristic to use when computing the optimal path. The heuristic options currently supported are Manhattan, Euclidean, and Chebyshev. The application finds a path through a maze, given the start position (entry) is at the top left tile and the final position (exit) is at the bottom right tile. 
 
 <p>
-    <img src="images/Overview.png" width="220" height="240" />
+    <img src="https://github.com/V-Bala/Maze-AI/blob/master/images/Overview.PNG" width="300" height="320" />
 </p>
 
 # Build and Deploy
