@@ -13,3 +13,5 @@ Run the following commands in the project directory:
 * `ant run` to run sample application,
 * `ant doc` to generate documentation,
 * `ant clean` to clean up project folder.
+
+Alternatively, import into Eclipse and run Maze-AI as a Java Application.
