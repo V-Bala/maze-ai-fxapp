@@ -11,9 +11,10 @@ import application.domain.SortedList;
  * heuristics (Manhattan, Euclidean, or Chebychev) to find
  * the shortest-path from start to end.
  * 
- * @author Vijay Bala
+ * @author vbala
  */
-public class AStarPathFinder {
+public class AStarPathFinder 
+{
 	
 	/** Set of already searched nodes */
 	private ArrayList<Node> closed = new ArrayList<Node>();
@@ -39,7 +40,8 @@ public class AStarPathFinder {
 	 * @param allowDiagMovement True if the search should try diagonal movement
 	 */
 	public AStarPathFinder(Maze maze, int maxSearchDistance, 
-						   boolean allowDiagMovement) {
+						   boolean allowDiagMovement) 
+	{
 		this.maze = maze;
 		this.maxSearchDistance = maxSearchDistance;
 		
@@ -89,7 +91,12 @@ public class AStarPathFinder {
 	 * Return a {@Path} if one is found, else return NULL.
 	 * 
 	 */
-	public Path findPath(int startX, int startY, int targetX, int targetY, String heuristicToUse) {
+	public Path findPath(
+			int startX, 
+			int startY, 
+			int targetX, 
+			int targetY, 
+			String heuristicToUse) {
 		
 		// Decrement max x and max y values to account for zero-based indexing
 		targetX = targetX -1;
@@ -136,7 +143,7 @@ public class AStarPathFinder {
 						// neighbors
 						float nextStepCost = current.cost + getMovementCost();
 						Node neighbour = nodes[xp][yp];
-						maze.visitedNode(xp, yp);
+						maze.markVisitedNode(xp, yp);
 						
 						// Node already exists, check its cost
 						// and update or ignore accordingly
@@ -186,7 +193,8 @@ public class AStarPathFinder {
 	 * 
 	 * @return The first element in the open list
 	 */
-	protected Node getBaseNode() {
+	protected Node getBaseNode() 
+	{
 		return (Node) open.first();
 	}
 	
@@ -195,7 +203,8 @@ public class AStarPathFinder {
 	 * 
 	 * @param node The node to be added to the open list
 	 */
-	protected void addToOpen(Node node) {
+	protected void addToOpen(Node node) 
+	{
 		open.add(node);
 	}
 	
@@ -205,7 +214,8 @@ public class AStarPathFinder {
 	 * @param node The node to check for
 	 * @return True if the node given is in the open list
 	 */
-	protected boolean inOpenList(Node node) {
+	protected boolean inOpenList(Node node) 
+	{
 		return open.contains(node);
 	}
 	
@@ -214,7 +224,8 @@ public class AStarPathFinder {
 	 * 
 	 * @param node The node to remove from the open list
 	 */
-	protected void removeFromOpen(Node node) {
+	protected void removeFromOpen(Node node) 
+	{
 		open.remove(node);
 	}
 	
@@ -223,7 +234,8 @@ public class AStarPathFinder {
 	 * 
 	 * @param node The node to add to the closed list
 	 */
-	protected void addToClosed(Node node) {
+	protected void addToClosed(Node node) 
+	{
 		closed.add(node);
 	}
 	
@@ -242,7 +254,8 @@ public class AStarPathFinder {
 	 * 
 	 * @param node The node to remove from the closed list
 	 */
-	protected void removeFromClosed(Node node) {
+	protected void removeFromClosed(Node node) 
+	{
 		closed.remove(node);
 	}
 	
@@ -253,7 +266,8 @@ public class AStarPathFinder {
 	 * @param y The y coordinate of the location to check
 	 * @return True if the location is valid
 	 */
-	protected boolean isValidLocation(int x, int y) {
+	protected boolean isValidLocation(int x, int y) 
+	{
 
 		if ((x < 0) || (y < 0) || (x >= maze.getWidth()) || (y >= maze.getHeight()))
 		{
@@ -291,8 +305,8 @@ public class AStarPathFinder {
 	 * @param endY The y coordinate of the target location
 	 * @return The heuristic cost assigned to the node
 	 */
-	public float getHeuristicCost(int x, int y, int endX, int endY, String heuristicToUse) {
-		
+	public float getHeuristicCost(int x, int y, int endX, int endY, String heuristicToUse) 
+	{	
 		if (heuristicToUse.equals(AStarHeuristic.algorithms[0]))
 		{
 			return AStarHeuristic.getCostChebyshevHeuristic(x, y, endX, endY);

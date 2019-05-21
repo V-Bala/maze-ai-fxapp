@@ -8,10 +8,17 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 
-
-public class MazeAI extends Application {
+/**
+ * Launch point for the Maze-AI JavaFX application
+ * 
+ * @author vbala
+ *
+ */
+public class MazeAI extends Application 
+{
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) 
+	{
 		try 
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI.fxml"));
@@ -26,7 +33,8 @@ public class MazeAI extends Application {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		launch(args);
 	}
 }

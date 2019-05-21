@@ -10,11 +10,13 @@ import java.util.Set;
 /**
  * Maze Object
  * 
- * This object represents a 2D grid of NxM tiles.
- * @author Vijay
+ * Represents a 2D grid of NxM tiles
+ * 
+ * @author vbala
  *
  */
-public class MazeImpl implements Maze {
+public class MazeImpl implements Maze 
+{
 	
 	private int width;
 	private int height;
@@ -29,7 +31,8 @@ public class MazeImpl implements Maze {
 	 * @param totalHeight
 	 * @param landMineCount
 	 */
-	public MazeImpl(int width, int height, int landMineCount) {
+	public MazeImpl(int width, int height, int landMineCount) 
+	{
 		this.width = width;
 		this.height = height;
 		this.landMineCount = landMineCount;
@@ -46,17 +49,21 @@ public class MazeImpl implements Maze {
 	 * 
 	 */
 	@Override
-	public void initialize() {
+	public void initialize() 
+	{
 		
 		// Create NODE objects based on the total length/width
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {				
+		for (int i = 0; i < width; i++) 
+		{
+			for (int j = 0; j < height; j++) 
+			{				
 				nodeSet.add(new Node(i, j));
 			}
 		}
 		
 		// Add up to #landMineCount mines to the maze
-		for (int i = 0; i < landMineCount; i++) {
+		for (int i = 0; i < landMineCount; i++) 
+		{
 			
 			// Calculate a random node index to place landmine 
 			Random rand = new Random();
@@ -77,10 +84,12 @@ public class MazeImpl implements Maze {
 	 * @param col
 	 * @return
 	 */
-	public Node getNodeAtRowCol(int row, int col) {
+	public Node getNodeAtRowCol(int row, int col) 
+	{
 		
 		for (Node node : nodeSet) {
-			if (node.getRow() == row && node.getCol() == col) {
+			if (node.getRow() == row && node.getCol() == col) 
+			{
 				return node;
 			}
 		}
@@ -91,10 +100,13 @@ public class MazeImpl implements Maze {
 	/**
 	 * Get the start {@link Node}.
 	 */
-	public Node getStartNode() {
+	public Node getStartNode() 
+	{
 		
-		for (Node node : nodeSet) {
-			if (node.getRow() == 0 && node.getCol() == 0) {
+		for (Node node : nodeSet) 
+		{
+			if (node.getRow() == 0 && node.getCol() == 0) 
+			{
 				return node;
 			}
 		}
@@ -106,10 +118,13 @@ public class MazeImpl implements Maze {
 	/**
 	 * Get the end {@link Node}.
 	 */
-	public Node getEndNode() {
+	public Node getEndNode() 
+	{
 		
-		for (Node node : nodeSet) {
-			if (node.getRow() == (width-1) && node.getCol() == (height-1)) {
+		for (Node node : nodeSet) 
+		{
+			if (node.getRow() == (width-1) && node.getCol() == (height-1)) 
+			{
 				return node;
 			}
 		}
@@ -117,34 +132,9 @@ public class MazeImpl implements Maze {
 		return null;
 
 	}	
-	
-	/**
-	 * Clear the array marking which tiles have been visted by the path 
-	 * finder.
-	 */
-	public void clearVisited() {
-		for (int x=0;x<getWidth();x++) {
-			for (int y=0;y<getHeight();y++) {
-				visited[x][y] = false;
-			}
-		}
-	}
-	
-	public boolean isVisited(int x, int y) {
-		return visited[x][y];
-	}
-	
-	public boolean isBlocked(int x, int y) {
-		// if theres a unit at the location, then it's blocked
-		Node node = getNodeAtRowCol(x, y);
-		if (node == null || node.isLandMine())
-		{
-			return false;
-		}
-		return true;
-	}
 
-	public void visitedNode(int x, int y) {
+	public void markVisitedNode(int x, int y) 
+	{
 		visited[x][y] = true;
 	}
 
@@ -152,7 +142,8 @@ public class MazeImpl implements Maze {
 	 * @see application.domain.Maze#getWidthInTiles()
 	 */
 	@Override
-	public int getWidth() {
+	public int getWidth() 
+	{
 		return this.width;
 	}
 
@@ -160,46 +151,15 @@ public class MazeImpl implements Maze {
 	 * @see application.domain.Maze#getHeightInTiles()
 	 */
 	@Override
-	public int getHeight() {
+	public int getHeight() 
+	{
 		return this.height;
 	}
 	
-	/* (non-Javadoc)
-	 * @see application.domain.Maze#getLandMineCount()
-	 */
 	@Override
-	public int getLandMineCount() {
-		return this.landMineCount;
-	}
-	
-	@Override
-	public Set<Node> getNodeSet() {
+	public Set<Node> getNodeSet() 
+	{
 		return this.nodeSet;
-	}
-
-	/* (non-Javadoc)
-	 * @see application.domain.Maze#isLandMine(application.domain.Node)
-	 */
-	@Override
-	public boolean isLandMine(Node node) {
-		
-		// Return true if the node contains a landmine
-		if (node.isLandMine()) {
-			return true;
-		}
-		
-		return false;
-	}
-
-	/* (non-Javadoc)
-	 * @see application.domain.Maze#getTime(application.domain.Node, application.domain.Node)
-	 */
-	@Override
-	public int getTime(Node start, Node end) {
-		
-		// Compute the elapsed time from the end node to the start node
-		// This is the "duration" it takes to get from START to END
-		return (end.getTime() - start.getTime());
 	}
 
 	/* (non-Javadoc)

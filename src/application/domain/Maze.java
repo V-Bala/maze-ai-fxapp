@@ -2,7 +2,15 @@ package application.domain;
 
 import java.util.Set;
 
-public interface Maze {
+/**
+ * Maze interface represents a grid of nodes according to the 
+ * user configuration
+ * 
+ * @author Vijay
+ *
+ */
+public interface Maze 
+{
 	
 	public void initialize();
 	
@@ -13,19 +21,11 @@ public interface Maze {
 	public Node getStartNode();
 	
 	public Node getEndNode();
-
-	public boolean isLandMine(Node node);
-
-	public int getTime(Node start, Node end);
-
-	public int getLandMineCount();
 	
 	public Set<Node> getNodeSet();
 	
 	public Node getNodeAtRowCol(int row, int col);
 	
-	public boolean isBlocked(int x, int y);
-
-	public void visitedNode(int xp, int yp);
+	public void markVisitedNode(int xp, int yp);
  }
 

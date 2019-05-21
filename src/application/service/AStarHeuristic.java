@@ -1,13 +1,21 @@
 package application.service;
 
-public class AStarHeuristic {
+/**
+ * Heuristic options for the A* Algorithm
+ * 
+ * @author vbala
+ *
+ */
+public class AStarHeuristic 
+{
 	
 	public static String [] algorithms = {"Chebyshev", "Euclidean", "Manhattan"};
 	
 	/**
 	 * Chebyshev Distance Heuristic
 	 */
-	public static float getCostChebyshevHeuristic(int x, int y, int tx, int ty) {
+	public static float getCostChebyshevHeuristic(int x, int y, int tx, int ty) 
+	{
 		
 		// Use Chebyshev distance heuristic if we can move one square either
 		// adjacent or diagonal
@@ -22,7 +30,8 @@ public class AStarHeuristic {
 	/**
 	 * Euclidean Distance Heuristic
 	 */
-	public static float getCostEuclideanDistance(int x, int y, int tx, int ty) {		
+	public static float getCostEuclideanDistance(int x, int y, int tx, int ty) 
+	{		
 		float dx = tx - x;
 		float dy = ty - y;
 		
@@ -34,7 +43,8 @@ public class AStarHeuristic {
 	/**
 	 * Manhattan Distance Heuristic
 	 */
-	public static float getCostManhattanDistance(int x, int y, int tx, int ty) {	
+	public static float getCostManhattanDistance(int x, int y, int tx, int ty) 
+	{	
 		float distance = 1;
 		float dx = Math.abs(x - tx);
 		float dy = Math.abs(y - ty);

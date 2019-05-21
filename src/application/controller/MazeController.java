@@ -20,8 +20,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class MazeController {
-	
+/**
+ * Controller object handles user events, triggers the 
+ * internal system, and updates the display
+ * 
+ * @author vbala
+ *
+ */
+public class MazeController 
+{
 	/**
 	 * The {@link Maze} instance associated with the controller
 	 */
@@ -62,7 +69,7 @@ public class MazeController {
 	 * @throws ProtocolException 
 	 */
 	@FXML
-	private void initialize() throws ProtocolException, IOException 
+	private void initialize() throws ProtocolException, IOException
 	{
 		String [] algorithmNames = AStarHeuristic.algorithms;
 		ObservableList<String> algorithms = FXCollections.observableArrayList(algorithmNames);
@@ -83,11 +90,14 @@ public class MazeController {
 	}
 	
 	/**
-	 * ACCEPT user input
+	 * Accept user input and build maze
 	 * 
-	 * @param TextField inputs for row length, column length, and landmine count
+	 * @param width 
+	 * @param height
+	 * @param landMineCount
 	 */	
-	public void initializeMaze(int width, int height, int landMineCount) {
+	public void initializeMaze(int width, int height, int landMineCount) 
+	{
 
 		// Clear the existing maze
 		mazePane.getChildren().clear();
@@ -101,13 +111,12 @@ public class MazeController {
 	}
 		
 	/**
+	 * Creates a path finding agent and solve for shortest path solution
+	 * 
 	 * Called when user selects "SOLVE MAZE" button in GUI
-	 * 
-	 * Calls {@link PathFinder#solveMaze(application.domain.Maze)}
-	 * 
-	 * IF PATH is returned THEN draw in GUI ELSE display error message to user
 	 */
-	public void executePathFinder(String algorithmToUse) {
+	public void executePathFinder(String algorithmToUse) 
+	{
 		//Path path;
 		Path newPath;
 
@@ -137,7 +146,8 @@ public class MazeController {
 	 * 
 	 * @param path
 	 */
-	private Pane buildPath(Maze maze, Path path) {
+	private Pane buildPath(Maze maze, Path path) 
+	{
 		
 		Set<Node> nodeSet = path.getNodeSet();		
 	    double width = maze.getWidth();

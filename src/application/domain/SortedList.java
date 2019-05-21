@@ -6,9 +6,10 @@ import java.util.Collections;
 /**
  * A simple sorted list
  *
- * @author Vijay
+ * @author vbala
  */
-public class SortedList {
+public class SortedList 
+{
 	
 	/** The list of elements */
 	@SuppressWarnings("rawtypes")
@@ -19,14 +20,16 @@ public class SortedList {
 	 * 
 	 * @return The first element from the list
 	 */
-	public Object first() {
+	public Object first() 
+	{
 		return list.get(0);
 	}
 
 	/**
 	 * Empty the list
 	 */
-	public void clear() {
+	public void clear() 
+	{
 		list.clear();
 	}
 
@@ -36,7 +39,8 @@ public class SortedList {
 	 * @param o The element to add
 	 */
 	@SuppressWarnings("unchecked")
-	public void add(Object o) {
+	public void add(Object o) 
+	{
 		list.add(o);
 		Collections.sort(list);
 	}
@@ -46,7 +50,8 @@ public class SortedList {
 	 * 
 	 * @param o The element to remove
 	 */
-	public void remove(Object o) {
+	public void remove(Object o) 
+	{
 		list.remove(o);
 	}
 
@@ -55,7 +60,8 @@ public class SortedList {
 	 * 
 	 * @return The number of element in the list
 	 */
-	public int size() {
+	public int size() 
+	{
 		return list.size();
 	}
 
@@ -65,7 +71,8 @@ public class SortedList {
 	 * @param o The element to search for
 	 * @return True if the element is in the list
 	 */
-	public boolean contains(Object o) {
+	public boolean contains(Object o) 
+	{
 		return list.contains(o);
 	}
 }
