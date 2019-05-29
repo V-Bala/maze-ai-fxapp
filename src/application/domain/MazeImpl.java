@@ -15,9 +15,8 @@ import java.util.Set;
  * @author vbala
  *
  */
-public class MazeImpl implements Maze 
-{
-	
+public class MazeImpl implements Maze {
+
 	private int width;
 	private int height;
 	private int landMineCount;
@@ -31,41 +30,36 @@ public class MazeImpl implements Maze
 	 * @param totalHeight
 	 * @param landMineCount
 	 */
-	public MazeImpl(int width, int height, int landMineCount) 
-	{
+	public MazeImpl(int width, int height, int landMineCount) {
 		this.width = width;
 		this.height = height;
 		this.landMineCount = landMineCount;
 		this.nodeSet = new LinkedHashSet<Node>();
 		this.visited = new boolean[width][height];
-		
+
 		this.initialize();
 	}
-	
+
 	/**
 	 * Initialize the Maze object according to the specified width and height.
-	 * Create a grid of {@link Node}s and store in a HashSet. Then randomly 
-	 * select node indices based on the dimensions provided and add landmines.
+	 * Create a grid of {@link Node}s and store in a HashSet. Then randomly select
+	 * node indices based on the dimensions provided and add landmines.
 	 * 
 	 */
 	@Override
-	public void initialize() 
-	{
-		
+	public void initialize() {
+
 		// Create NODE objects based on the total length/width
-		for (int i = 0; i < width; i++) 
-		{
-			for (int j = 0; j < height; j++) 
-			{				
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
 				nodeSet.add(new Node(i, j));
 			}
 		}
-		
+
 		// Add up to #landMineCount mines to the maze
-		for (int i = 0; i < landMineCount; i++) 
-		{
-			
-			// Calculate a random node index to place landmine 
+		for (int i = 0; i < landMineCount; i++) {
+
+			// Calculate a random node index to place landmine
 			Random rand = new Random();
 
 			// Obtain a number between [1 - nodeSet.size()].
@@ -74,9 +68,9 @@ public class MazeImpl implements Maze
 			Node node = (Node) nodeSet.toArray()[nodeIndex];
 			node.setLandMine(true);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Get the {@link Node} at the specified row and column.
 	 * 
@@ -84,85 +78,79 @@ public class MazeImpl implements Maze
 	 * @param col
 	 * @return
 	 */
-	public Node getNodeAtRowCol(int row, int col) 
-	{
-		
+	public Node getNodeAtRowCol(int row, int col) {
+
 		for (Node node : nodeSet) {
-			if (node.getRow() == row && node.getCol() == col) 
-			{
+			if (node.getRow() == row && node.getCol() == col) {
 				return node;
 			}
 		}
-		
+
 		return new Node();
 	}
-	
+
 	/**
 	 * Get the start {@link Node}.
 	 */
-	public Node getStartNode() 
-	{
-		
-		for (Node node : nodeSet) 
-		{
-			if (node.getRow() == 0 && node.getCol() == 0) 
-			{
+	public Node getStartNode() {
+
+		for (Node node : nodeSet) {
+			if (node.getRow() == 0 && node.getCol() == 0) {
 				return node;
 			}
 		}
-		
+
 		return null;
 
 	}
-	
+
 	/**
 	 * Get the end {@link Node}.
 	 */
-	public Node getEndNode() 
-	{
-		
-		for (Node node : nodeSet) 
-		{
-			if (node.getRow() == (width-1) && node.getCol() == (height-1)) 
-			{
+	public Node getEndNode() {
+
+		for (Node node : nodeSet) {
+			if (node.getRow() == (width - 1) && node.getCol() == (height - 1)) {
 				return node;
 			}
 		}
-		
+
 		return null;
 
-	}	
+	}
 
-	public void markVisitedNode(int x, int y) 
-	{
+	public void markVisitedNode(int x, int y) {
 		visited[x][y] = true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see application.domain.Maze#getWidthInTiles()
 	 */
 	@Override
-	public int getWidth() 
-	{
+	public int getWidth() {
 		return this.width;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see application.domain.Maze#getHeightInTiles()
 	 */
 	@Override
-	public int getHeight() 
-	{
+	public int getHeight() {
 		return this.height;
 	}
-	
+
 	@Override
-	public Set<Node> getNodeSet() 
-	{
+	public Set<Node> getNodeSet() {
 		return this.nodeSet;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
